@@ -28,30 +28,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Run tests with coverage
-        run: pnpm run test:coverage
-
-      - name: Generate LCOV from coverage
-        run: |
-          cat > convert-coverage.js << 'EOF'
-          const fs = require('fs');
-          const coverage = JSON.parse(fs.readFileSync('coverage/teslo-shop/coverage-final.json', 'utf8'));
-
-          let lcov = 'TN:teslo-shop\n';
-          for (const [file, data] of Object.entries(coverage)) {
-            lcov += `SF:${file}\n`;
-            if (data.statements) {
-              for (const [line, count] of Object.entries(data.statements)) {
-                if (count > 0) lcov += `DA:${line},1\n`;
-                else lcov += `DA:${line},0\n`;
-              }
-            }
-            lcov += 'end_of_record\n';
-          }
-          fs.writeFileSync('coverage/teslo-shop/lcov.info', lcov);
-          console.log('LCOV report generated');
-          EOF
-          node convert-coverage.js
+      - name: Run tests
+        run: pnpm test
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5.0.0
