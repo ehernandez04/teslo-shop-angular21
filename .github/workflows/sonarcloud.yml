@@ -31,6 +31,10 @@ jobs:
       - name: Run tests with coverage
         run: pnpm run test:coverage
 
+      - name: Generate LCOV report
+        run: |
+          npx nyc report --reporter=lcov --report-dir=coverage/teslo-shop
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
