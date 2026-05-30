@@ -9,6 +9,17 @@ pipeline {
             }
         }
 
+        stage('Install Node and pnpm') {
+            steps {
+                echo 'Instalando Node.js y pnpm...'
+                sh '''
+                    curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+                    apt-get install -y nodejs
+                    npm install -g pnpm
+                '''
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 echo 'Instalando dependencias con pnpm...'
