@@ -10,12 +10,6 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   readonly title = signal('teslo-shop');
 
-  // Variable que nunca se usa ← SONARQUBE LO DETECTARÁ
-  unusedVariable = 'esto nunca se usa';
-
-  // Comentario obvio ← SONARQUBE LO DETECTARÁ
-  // Este es un comentario
-
   handleClick() {
     console.log('click');
   }
