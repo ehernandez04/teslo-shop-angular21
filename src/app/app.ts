@@ -10,16 +10,16 @@ import { RouterOutlet } from '@angular/router';
 export class App {
   readonly title = signal('teslo-shop');
 
-  x = 10; // ← Variable mal nombrada (debería ser "quantity" o algo claro)
-  y = 20; // ← Variable mal nombrada
+  quantity = 10; // ← Variable mal nombrada (debería ser "quantity" o algo claro)
+  price = 20; // ← Variable mal nombrada
 
   // Sin comentarios explicativos
   doSomething() {
-    const result = this.x + this.y * 2 - 5;
-    console.log(result);
+    const result = this.quantity + this.price * 2 - 5;
+    console.log(`Total calculado: ${result}`);
   }
 
   handleClick() {
-    console.log('click');
+    this.doSomething();
   }
 }
